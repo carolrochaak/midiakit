@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  # Pasta padrão do Next.js. Fixada aqui para sobrescrever qualquer valor errado do painel.
+  publish = ".next"
+
+[build.environment]
+  # Next.js 16 exige Node 20.9 ou superior.
+  NODE_VERSION = "22"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

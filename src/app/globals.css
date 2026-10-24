@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+:root {
+  --ivory: #f3efe9;
+  --paper: #fbf9f6;
+  --white: #ffffff;
+  --blush: #e7d5cf;
+  --blush-soft: #f6efec;
+  --blush-deep: #c9aaa3;
+  --sand: #e8dfd6;
+  --ink: #1a1a1a;
+  --charcoal: #2b2b2b;
+  --stone: #5e584f;
+  --muted: #4f4a45;
+  --header-h: 4rem;
+  --radius-card: 1.35rem;
+  --radius-media: 1.75rem;
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-paper: var(--paper);
+  --color-white: var(--white);
+  --color-blush: var(--blush);
+  --color-blush-soft: var(--blush-soft);
+  --color-blush-deep: var(--blush-deep);
+  --color-sand: var(--sand);
+  --color-ink: var(--ink);
+  --color-charcoal: var(--charcoal);
+  --color-stone: var(--stone);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-outfit), sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-h: 5rem;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 0.75rem);
+  color-scheme: light;
+  scrollbar-color: #c9aaa3 #f3efe9;
+  interpolate-size: allow-keywords;
+}
+
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-outfit), sans-serif;
+  overflow-x: clip;
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  text-wrap: balance;
+}
+
+::selection {
+  background: #e7d5cf;
+  color: #1a1a1a;
+}
+
+:focus-visible {
+  outline: 2px solid #f3efe9;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px #1a1a1a;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  height: 2px;
+  width: 100%;
+  transform-origin: 0 50%;
+  background: var(--blush-deep);
+  pointer-events: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: scroll-progress linear;
+    animation-timeline: scroll();
+  }
+}
+
+@keyframes scroll-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.site-dialog {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100svh;
+  max-height: none;
+  border: 0;
+  padding: 0;
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+.site-dialog::backdrop {
+  background: color-mix(in srgb, var(--ivory) 88%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.site-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+@starting-style {
+  .site-dialog[open] {
+    opacity: 0;
+  }
+}
+
+.site-dialog {
+  opacity: 1;
+  transition: opacity 220ms ease;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .scroll-progress {
+    display: none;
+  }
+}
