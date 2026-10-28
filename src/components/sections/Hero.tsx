@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { mediaKit } from "@/data/media-kit";
 import { Button } from "@/components/ui/Button";
 
@@ -8,24 +7,23 @@ export function Hero() {
   return (
     <section id="topo" className="relative bg-ivory pt-16 md:pt-20 lg:min-h-svh lg:pt-0">
       <div className="relative h-[58svh] overflow-hidden lg:absolute lg:inset-x-0 lg:top-20 lg:bottom-0 lg:h-auto">
-        <Image
+        <img
           src={hero.imageMobile}
           alt={hero.imageAlt}
-          fill
-          priority
-          unoptimized
-          className="object-cover object-[center_38%] lg:hidden"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-[center_28%] lg:hidden"
         />
-        <Image
+        <img
           src={hero.image}
           alt={hero.imageAlt}
-          fill
-          unoptimized
-          className="hidden object-cover object-[62%_22%] lg:block"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 hidden h-full w-full object-cover object-[58%_28%] lg:block"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(243,239,233,0.78)_0%,rgba(243,239,233,0.32)_38%,transparent_64%)] lg:block"
+          className="absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(247,236,238,0.82)_0%,rgba(247,236,238,0.38)_38%,transparent_64%)] lg:block"
         />
       </div>
 

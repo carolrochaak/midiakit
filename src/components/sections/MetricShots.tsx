@@ -23,7 +23,7 @@ function DeviceFrame({
 
   return (
     <div
-      className={`overflow-hidden bg-white shadow-[0_22px_55px_-28px_rgba(26,26,26,0.55)] ring-1 ring-ink/10 ${
+        className={`overflow-hidden bg-white shadow-[0_22px_55px_-28px_rgba(107,33,54,0.4)] ring-1 ring-ink/10 ${
         portrait
           ? "h-[22rem] w-[10.15rem] rounded-[1.85rem] p-1.5 md:h-[28rem] md:w-[12.9rem]"
           : "w-[min(100%,34rem)] rounded-[1.35rem] p-1.5"

@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --ivory: #f3efe9;
-  --paper: #fbf9f6;
+  --ivory: #f7ecee;
+  --paper: #fbf4f6;
   --white: #ffffff;
-  --blush: #e7d5cf;
-  --blush-soft: #f6efec;
-  --blush-deep: #c9aaa3;
-  --sand: #e8dfd6;
-  --ink: #1a1a1a;
-  --charcoal: #2b2b2b;
-  --stone: #5e584f;
-  --muted: #4f4a45;
+  --blush: #c68a94;
+  --blush-soft: #f3e0e3;
+  --blush-deep: #8a3a4e;
+  --sand: #e8c9ce;
+  --ink: #6b2136;
+  --charcoal: #8a3a4e;
+  --stone: #8a3a4e;
+  --muted: #7a3548;
   --header-h: 4rem;
   --radius-card: 1.35rem;
   --radius-media: 1.75rem;
@@ -43,7 +43,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 0.75rem);
   color-scheme: light;
-  scrollbar-color: #c9aaa3 #f3efe9;
+  scrollbar-color: #c68a94 #f7ecee;
   interpolate-size: allow-keywords;
 }
 
@@ -64,14 +64,14 @@ h4 {
 }
 
 ::selection {
-  background: #e7d5cf;
-  color: #1a1a1a;
+  background: #e8c9ce;
+  color: #6b2136;
 }
 
 :focus-visible {
-  outline: 2px solid #f3efe9;
+  outline: 2px solid #f7ecee;
   outline-offset: 3px;
-  box-shadow: 0 0 0 5px #1a1a1a;
+  box-shadow: 0 0 0 5px #6b2136;
 }
 
 .scroll-progress {

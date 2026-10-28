@@ -24,7 +24,7 @@ export function Measures() {
               src={measures.image}
               alt={measures.imageAlt}
               sizes="(max-width: 1024px) 100vw, 40vw"
-              className="aspect-[3/4] bg-blush"
+              className="aspect-[3/4] overflow-hidden bg-blush"
               object="object-cover object-center"
             />
           </Reveal>

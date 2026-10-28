@@ -9,5 +9,5 @@ export const mediaKitPath = "/midiakit";
 export const mediaKitUrl = `${siteUrl}${mediaKitPath}`;
 
 export const siteImage = {
-  share: "/media/smile-v2.jpg",
+  share: "/media/smile-v3.webp",
 };

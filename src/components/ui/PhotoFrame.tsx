@@ -7,19 +7,21 @@ type PhotoFrameProps = {
   className?: string;
   object?: string;
   contain?: boolean;
+  imageClassName?: string;
 };
 
 export function PhotoFrame({
   src,
   alt,
   sizes,
-  className = "aspect-[3/4]",
+  className = "aspect-[3/4] overflow-hidden",
   object = "object-cover object-[center_18%]",
   contain = false,
+  imageClassName = "",
 }: PhotoFrameProps) {
   return (
     <div
-      className={`relative overflow-hidden bg-sand ${className}`}
+      className={`relative bg-sand ${className}`}
       style={{ borderRadius: "var(--radius-media)" }}
     >
       <Image
@@ -27,7 +29,7 @@ export function PhotoFrame({
         alt={alt}
         fill
         sizes={sizes}
-        className={contain ? "object-contain" : object}
+        className={`${contain ? "object-contain" : object} ${imageClassName}`}
       />
     </div>
   );

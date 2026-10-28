@@ -12,8 +12,8 @@ export function Audience() {
       className="scroll-mt-24 bg-blush-soft py-24 md:py-32"
     >
       <Container>
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="lg:col-span-7">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-10">
+          <Reveal className="lg:col-span-6">
             <SectionHeading
               title={audience.title}
               text={audience.text}
@@ -41,12 +41,13 @@ export function Audience() {
             </blockquote>
           </Reveal>
 
-          <Reveal className="lg:col-span-5" delay={0.08}>
+          <Reveal className="lg:col-span-6" delay={0.08}>
             <PhotoFrame
               src={audience.image}
               alt={audience.imageAlt}
-              sizes="(max-width: 1024px) 100vw, 40vw"
-              className="aspect-[4/5] bg-transparent"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="aspect-[3/4] overflow-hidden bg-transparent"
+              imageClassName="origin-center scale-[1.08] lg:scale-[1.12]"
               contain
             />
           </Reveal>

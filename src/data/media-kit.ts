@@ -57,10 +57,10 @@ export const mediaKit = {
     surname: "Rocha",
     lead: "Criadora de lifestyle, moda, beleza e maternidade real. Instagram, TikTok Shop e parcerias com marcas.",
     niches: ["Lifestyle", "Moda", "Saúde", "Maternidade real"],
-    image: "/media/hero-v3.jpg",
-    imageMobile: "/media/hero-mobile.jpg",
+    image: "/media/hero-v6.webp",
+    imageMobile: "/media/hero-mobile-v2.webp",
     imageAlt:
-      "Caroline Rocha sentada, de blazer bege, sorrindo com a mão apoiada no queixo",
+      "Caroline Rocha de camiseta vermelha e calça jeans, com as mãos nos bolsos",
     primaryLabel: "Chamar no WhatsApp",
     secondaryLabel: "Ver os números",
   },
@@ -79,7 +79,7 @@ export const mediaKit = {
       { label: "Atendimento", value: "Direto, sem agência" },
       { label: "Critério", value: "Só indica o que usa" },
     ],
-    image: "/media/about.jpg",
+    image: "/media/about.webp",
     imageAlt:
       "Caroline Rocha de blazer bege e calça jeans, sentada em poltrona verde sob luz natural",
   },
@@ -145,7 +145,7 @@ export const mediaKit = {
       "Instagram dos últimos 60 dias. TikTok da semana de 2 a 8 de outubro de 2026.",
     proofs: [
       {
-        src: "/media/metricas/instagram.jpg",
+        src: "/media/metricas/instagram.webp",
         width: 666,
         height: 539,
         label: "Instagram",
@@ -153,7 +153,7 @@ export const mediaKit = {
         alt: "Insights do Instagram em 60 dias: 287.336 visualizações, +84 seguidores líquidos e 9.877 interações",
       },
       {
-        src: "/media/metricas/tiktok-semana.jpg",
+        src: "/media/metricas/tiktok-semana.webp",
         width: 738,
         height: 1600,
         label: "TikTok",
@@ -161,7 +161,7 @@ export const mediaKit = {
         alt: "Análise do TikTok de 2 a 8 de outubro, com 323,3 mil visualizações e a origem do tráfego",
       },
       {
-        src: "/media/metricas/tiktok-studio.jpg",
+        src: "/media/metricas/tiktok-studio.webp",
         width: 738,
         height: 1600,
         label: "TikTok Studio",
@@ -187,9 +187,9 @@ export const mediaKit = {
       "Rotina",
       "TikTok Shop",
     ],
-    image: "/media/glance_v2.jpg",
+    image: "/media/glance-v3.webp",
     imageAlt:
-      "Caroline Rocha olhando por cima do ombro, com cabelo preso e luz de fim de tarde",
+      "Caroline Rocha de cardigã verde e blusa preta, olhando para o lado",
   },
   craft: {
     index: "04",
@@ -359,7 +359,7 @@ export const mediaKit = {
     eyebrow: "Medidas",
     title: "A medida da produção.",
     text: "Para a marca chegar com a peça certa.",
-    image: "/media/home-v2.jpg",
+    image: "/media/home-v2.webp",
     imageAlt:
       "Look de Caroline Rocha: colete preto tomara-que-caia, calça jeans wide-leg, bolsa branca e sapatilha dourada",
     items: [
@@ -380,17 +380,18 @@ export const mediaKit = {
     text: "Parcerias, TikTok Shop e campanhas de conteúdo. O retorno é direto com a Caroline.",
     polaroids: [
       {
-        src: "/media/smile-v2.jpg",
-        alt: "Caroline Rocha em um caminho, de colete preto e calça jeans, com bolsa branca na mão",
-        object: "object-[center_62%]",
+        src: "/media/smile-v3.webp",
+        alt: "Caroline Rocha em um café ao ar livre, de jaqueta estampada e legging azul, ao lado de uma bandeira Principia",
+        object: "object-center",
       },
       {
-        src: "/media/look-v2.jpg",
+        src: "/media/look-v2.webp",
         alt: "Caroline Rocha agachada, de camiseta vermelha, calça preta e sapatilha vermelha, com a mão na bolsa bege",
       },
       {
-        src: "/media/close.jpg",
-        alt: "Close de Caroline Rocha com brinco dourado",
+        src: "/media/close-v2.webp",
+        alt: "Caroline Rocha de camiseta verde, sorrindo e mostrando no celular um retrato dela",
+        object: "object-center",
       },
     ],
   },
