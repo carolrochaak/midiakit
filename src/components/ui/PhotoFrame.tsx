@@ -7,7 +7,6 @@ type PhotoFrameProps = {
   className?: string;
   object?: string;
   contain?: boolean;
-  imageClassName?: string;
 };
 
 export function PhotoFrame({
@@ -17,7 +16,6 @@ export function PhotoFrame({
   className = "aspect-[3/4] overflow-hidden",
   object = "object-cover object-[center_18%]",
   contain = false,
-  imageClassName = "",
 }: PhotoFrameProps) {
   return (
     <div
@@ -29,7 +27,7 @@ export function PhotoFrame({
         alt={alt}
         fill
         sizes={sizes}
-        className={`${contain ? "object-contain" : object} ${imageClassName}`}
+        className={contain ? "object-contain" : object}
       />
     </div>
   );

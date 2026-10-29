@@ -57,8 +57,8 @@ export const mediaKit = {
     surname: "Rocha",
     lead: "Criadora de lifestyle, moda, beleza e maternidade real. Instagram, TikTok Shop e parcerias com marcas.",
     niches: ["Lifestyle", "Moda", "Saúde", "Maternidade real"],
-    image: "/media/hero-v6.webp",
-    imageMobile: "/media/hero-mobile-v2.webp",
+    image: "/media/hero-v7.webp",
+    imageMobile: "/media/hero-mobile-v3.webp",
     imageAlt:
       "Caroline Rocha de camiseta vermelha e calça jeans, com as mãos nos bolsos",
     primaryLabel: "Chamar no WhatsApp",
@@ -187,7 +187,7 @@ export const mediaKit = {
       "Rotina",
       "TikTok Shop",
     ],
-    image: "/media/glance-v3.webp",
+    image: "/media/audience-v5.webp",
     imageAlt:
       "Caroline Rocha de cardigã verde e blusa preta, olhando para o lado",
   },

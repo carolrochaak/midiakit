@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Section";
 
 export function About() {
   const { about } = mediaKit;
+  const [lead, ...paragraphs] = about.paragraphs;
 
   return (
     <section
@@ -12,52 +13,58 @@ export function About() {
       className="scroll-mt-24 overflow-hidden bg-paper py-24 md:py-32"
     >
       <Container>
-        <Reveal>
-          <h2
-            aria-label="Propósito"
-            className="font-serif text-[clamp(4.6rem,16vw,9rem)] leading-[0.76] font-medium tracking-[-0.055em] text-ink"
-          >
-            <span aria-hidden="true" className="block">
-              propó
-            </span>
-            <span aria-hidden="true" className="block font-normal italic">
-              sito
-            </span>
-          </h2>
-        </Reveal>
-
-        <div className="mt-12 grid items-start gap-12 md:mt-16 md:grid-cols-12 md:gap-16">
-          <Reveal className="md:col-span-5">
-            <figure>
-              <PhotoFrame
-                src={about.image}
-                alt={about.imageAlt}
-                sizes="(max-width: 768px) 100vw, 40vw"
-              />
-              <figcaption className="mt-4 text-[11px] tracking-[0.22em] text-stone uppercase">
+        <div className="grid gap-16 lg:grid-cols-12 lg:gap-16">
+          <Reveal className="lg:col-span-5">
+            <PhotoFrame
+              src={about.image}
+              alt={about.imageAlt}
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="aspect-[4/5] overflow-hidden"
+              object="object-cover object-[center_32%]"
+            />
+            <div
+              className="relative z-10 -mt-20 ml-auto w-[88%] bg-ink p-6 text-ivory shadow-[0_24px_60px_-30px_rgba(107,33,54,0.55)] sm:w-[78%] md:p-7 lg:-mr-10"
+              style={{ borderRadius: "var(--radius-card)" }}
+            >
+              <blockquote className="font-serif text-[1.35rem] leading-snug italic md:text-[1.6rem]">
+                “{about.quote}”
+              </blockquote>
+              <p className="mt-4 text-[10px] tracking-[0.22em] text-sand uppercase">
                 Caroline Rocha
-              </figcaption>
-            </figure>
+              </p>
+            </div>
           </Reveal>
 
-          <Reveal className="md:col-span-7" delay={0.08}>
-            <div className="space-y-5 text-base leading-[1.7] text-muted md:text-lg">
-              {about.paragraphs.map((paragraph) => (
+          <Reveal className="lg:col-span-7 lg:pt-4 lg:pl-6" delay={0.08}>
+            <h2
+              aria-label="Propósito"
+              className="font-serif text-[clamp(3.4rem,9vw,6.2rem)] leading-[0.85] tracking-[-0.045em] text-ink"
+            >
+              <span aria-hidden="true">
+                Propó<span className="italic">sito</span>
+              </span>
+            </h2>
+
+            <p className="mt-10 font-serif text-[1.65rem] leading-[1.2] tracking-[-0.01em] text-ink md:text-[2.15rem]">
+              {lead}
+            </p>
+
+            <div className="mt-10 grid gap-6 border-t border-ink/10 pt-8 text-[15px] leading-[1.75] text-muted sm:grid-cols-2 sm:gap-10">
+              {paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
-            <blockquote className="mt-10 border-l-2 border-blush-deep pl-6">
-              <p className="font-serif text-[1.65rem] leading-snug text-ink italic md:text-[2.1rem]">
-                “{about.quote}”
-              </p>
-            </blockquote>
-            <dl className="mt-10 grid gap-6 sm:grid-cols-3">
+
+            <dl
+              className="mt-12 grid gap-px overflow-hidden bg-ink/10 sm:grid-cols-3"
+              style={{ borderRadius: "var(--radius-card)" }}
+            >
               {about.facts.map((fact) => (
-                <div key={fact.label} className="border-t border-ink/10 pt-4">
-                  <dt className="text-[10px] tracking-[0.2em] text-stone uppercase">
+                <div key={fact.label} className="bg-ivory px-5 py-6">
+                  <dt className="text-[10px] tracking-[0.18em] text-stone uppercase sm:text-[11px]">
                     {fact.label}
                   </dt>
-                  <dd className="mt-2 font-serif text-[1.65rem] leading-tight text-ink">
+                  <dd className="mt-2 font-serif text-[1.5rem] leading-tight text-ink">
                     {fact.value}
                   </dd>
                 </div>

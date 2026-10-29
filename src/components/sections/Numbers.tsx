@@ -1,118 +1,139 @@
-import { MetricShots } from "@/components/sections/MetricShots";
 import { mediaKit } from "@/data/media-kit";
+import { InstagramIcon, TikTokIcon } from "@/components/ui/Icons";
 import { Meter } from "@/components/ui/Meter";
 import { Reveal } from "@/components/ui/Reveal";
-import { Container, SectionHeading } from "@/components/ui/Section";
+import { Container, SplitHeading } from "@/components/ui/Section";
+
+const platformIcons = {
+  instagram: InstagramIcon,
+  tiktok: TikTokIcon,
+};
 
 export function Numbers() {
   const { numbers } = mediaKit;
+  const lastHighlight = numbers.highlights.length - 1;
 
   return (
     <section
       id="numeros"
       className="relative scroll-mt-24 overflow-hidden bg-ink py-24 text-ivory md:py-32"
     >
-      <p
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-6 left-0 font-serif text-[clamp(6rem,22vw,15rem)] leading-none tracking-[-0.06em] text-white/[0.04] select-none"
-      >
-        métricas
-      </p>
-      <Container className="relative z-10">
+      <Container>
         <Reveal>
-          <SectionHeading
+          <SplitHeading
             title={numbers.title}
             text={numbers.text}
             tone="dark"
+            aside={
+              <p className="mt-6 border-l border-white/20 pl-4 text-[13px] leading-relaxed text-white/50">
+                {numbers.disclaimer}
+              </p>
+            }
           />
-          <p className="mt-6 max-w-2xl text-sm leading-relaxed text-white/50">
-            {numbers.disclaimer}
-          </p>
         </Reveal>
 
-        <Reveal className="mt-14">
-          <ul className="grid grid-cols-2 gap-px bg-white/10 lg:grid-cols-4">
-            {numbers.highlights.map((item) => (
+        <Reveal className="mt-14 md:mt-20">
+          <ul
+            className="grid grid-cols-2 gap-px overflow-hidden border border-white/12 bg-white/12 lg:grid-cols-4"
+            style={{ borderRadius: "var(--radius-card)" }}
+          >
+            {numbers.highlights.map((item, index) => (
               <li
                 key={`${item.label}-${item.hint}`}
-                className="bg-ink px-4 py-6 sm:px-6 sm:py-8"
+                className={`flex flex-col px-4 py-7 sm:px-7 sm:py-9 ${
+                  index === lastHighlight ? "bg-blush-deep" : "bg-ink"
+                }`}
               >
-                <p className="font-serif text-[1.85rem] leading-none tracking-tight sm:text-[2.6rem]">
+                <p className="font-serif text-[clamp(1.55rem,7vw,2.1rem)] leading-none tracking-[-0.03em] whitespace-nowrap sm:text-[3.2rem]">
                   {item.value}
                 </p>
-                <p className="mt-4 text-[11px] tracking-[0.18em] text-white/80 uppercase">
+                <p className="mt-6 text-[10px] font-medium tracking-[0.2em] text-ivory uppercase sm:text-[11px]">
                   {item.label}
                 </p>
-                <p className="mt-1 text-sm text-white/45">{item.hint}</p>
+                <p className="mt-1 text-[13px] text-white/55">{item.hint}</p>
               </li>
             ))}
           </ul>
         </Reveal>
 
-        <div className="mt-3 grid gap-3 lg:grid-cols-2">
-          {numbers.platforms.map((platform) => (
-            <Reveal key={platform.id}>
-              <article
-                className="h-full border border-white/12 p-6 sm:p-8"
-                style={{ borderRadius: "var(--radius-card)" }}
-              >
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    <h3 className="font-serif text-4xl leading-none">{platform.name}</h3>
-                    <a
-                      href={platform.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-block text-sm text-white/60 underline-offset-4 hover:text-ivory hover:underline"
-                    >
-                      {platform.handle}
-                    </a>
-                  </div>
-                  <p className="text-[11px] tracking-[0.16em] text-blush uppercase sm:pt-2 sm:text-right">
-                    {platform.window}
-                  </p>
-                </div>
+        <div className="mt-4 grid gap-4 lg:grid-cols-2">
+          {numbers.platforms.map((platform, index) => {
+            const Icon = platformIcons[platform.id];
 
-                <dl className="mt-8 grid gap-5 sm:grid-cols-3">
-                  {platform.stats.map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="flex items-end justify-between gap-4 border-b border-white/10 pb-3 sm:block sm:border-0 sm:pb-0"
-                    >
-                      <dd className="font-serif text-[2rem] leading-none tracking-tight sm:text-[2.35rem]">
-                        {stat.value}
-                      </dd>
-                      <dt className="text-[10px] tracking-[0.14em] text-white/50 uppercase sm:mt-2 sm:text-[11px]">
-                        {stat.label}
-                      </dt>
+            return (
+              <Reveal key={platform.id} delay={index * 0.06}>
+                <article
+                  className="flex h-full flex-col bg-white/[0.035] p-6 ring-1 ring-white/10 ring-inset sm:p-8"
+                  style={{ borderRadius: "var(--radius-card)" }}
+                >
+                  <header className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
+                    <div className="flex items-center gap-3.5">
+                      <span className="flex size-11 items-center justify-center rounded-full bg-ivory text-ink">
+                        <Icon className="size-[18px]" />
+                      </span>
+                      <div>
+                        <h3 className="font-serif text-[1.9rem] leading-none">
+                          {platform.name}
+                        </h3>
+                        <a
+                          href={platform.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-1 inline-block text-[13px] text-white/55 underline-offset-4 hover:text-ivory hover:underline"
+                        >
+                          {platform.handle}
+                        </a>
+                      </div>
                     </div>
-                  ))}
-                </dl>
+                    <p className="rounded-full border border-white/15 px-3 py-1.5 text-[10px] font-medium tracking-[0.16em] text-sand uppercase">
+                      {platform.window}
+                    </p>
+                  </header>
 
-                <p className="mt-6 text-sm leading-relaxed text-white/60">{platform.note}</p>
+                  <dl className="grid gap-4 py-7 sm:grid-cols-3 sm:gap-6">
+                    {platform.stats.map((stat) => (
+                      <div
+                        key={stat.label}
+                        className="flex items-baseline justify-between gap-4 border-b border-white/10 pb-3 last:border-b-0 sm:flex-col-reverse sm:items-start sm:justify-end sm:gap-2 sm:border-0 sm:pb-0"
+                      >
+                        <dt className="text-[10px] tracking-[0.14em] text-white/50 uppercase sm:text-[11px]">
+                          {stat.label}
+                        </dt>
+                        <dd className="font-serif text-[1.9rem] leading-none tracking-tight whitespace-nowrap sm:text-[2.2rem]">
+                          {stat.value}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
 
-                <div className="mt-7 space-y-5">
-                  {platform.meters.map((meter) => (
-                    <Meter
-                      key={meter.label}
-                      label={meter.label}
-                      display={meter.display}
-                      value={meter.value}
-                    />
-                  ))}
-                </div>
-              </article>
-            </Reveal>
-          ))}
+                  <div className="mt-auto space-y-5 border-t border-white/10 pt-6">
+                    {platform.meters.map((meter) => (
+                      <Meter
+                        key={meter.label}
+                        label={meter.label}
+                        display={meter.display}
+                        value={meter.value}
+                      />
+                    ))}
+                    <p className="pt-1 text-[13px] leading-relaxed text-white/55">
+                      {platform.note}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
-
-        {/* <MetricShots /> */}
 
         <a
           href="#contato"
-          className="mt-12 inline-flex min-h-11 items-center text-[11px] font-medium tracking-[0.2em] text-blush uppercase underline-offset-4 hover:underline"
+          className="group mt-12 inline-flex min-h-11 items-center gap-3 text-[11px] font-medium tracking-[0.2em] text-sand uppercase"
         >
           {numbers.cta}
+          <span
+            aria-hidden="true"
+            className="h-px w-8 bg-current transition-[width] duration-300 group-hover:w-12"
+          />
         </a>
       </Container>
     </section>
