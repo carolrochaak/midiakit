@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useId, useRef, useState } from "react";
 import { mediaKit } from "@/data/media-kit";
 import { useActiveSection } from "@/hooks/useActiveSection";
@@ -16,6 +17,7 @@ export function Header() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   const current = useActiveSection(sectionIds);
+  const reduceMotion = useReducedMotion();
 
   function openMenu() {
     dialogRef.current?.showModal();
@@ -67,11 +69,23 @@ export function Header() {
                   key={item.id}
                   href={`#${item.id}`}
                   aria-current={active ? "location" : undefined}
-                  className={`text-[11px] font-medium uppercase tracking-[0.18em] transition ${
+                  className={`relative py-2 text-[11px] font-medium uppercase tracking-[0.18em] transition ${
                     active ? "text-ink" : "text-ink/55 hover:text-ink"
                   }`}
                 >
                   {item.label}
+                  {active ? (
+                    <motion.span
+                      layoutId="nav-active"
+                      aria-hidden="true"
+                      className="absolute inset-x-0 bottom-0 h-px bg-ink"
+                      transition={
+                        reduceMotion
+                          ? { duration: 0 }
+                          : { type: "spring", stiffness: 380, damping: 34 }
+                      }
+                    />
+                  ) : null}
                 </a>
               );
             })}

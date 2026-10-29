@@ -1,6 +1,7 @@
 import { mediaKit } from "@/data/media-kit";
 import { InstagramIcon, TikTokIcon } from "@/components/ui/Icons";
 import { Meter } from "@/components/ui/Meter";
+import { CountUp, Stagger, StaggerItem } from "@/components/ui/Motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { Container, SplitHeading } from "@/components/ui/Section";
 
@@ -18,7 +19,11 @@ export function Numbers() {
       id="numeros"
       className="relative scroll-mt-24 overflow-hidden bg-ink py-24 text-ivory md:py-32"
     >
-      <Container>
+      <div
+        aria-hidden="true"
+        className="drift pointer-events-none absolute -top-48 -right-40 size-[40rem] rounded-full bg-blush-deep/45 blur-[140px]"
+      />
+      <Container className="relative">
         <Reveal>
           <SplitHeading
             title={numbers.title}
@@ -32,29 +37,31 @@ export function Numbers() {
           />
         </Reveal>
 
-        <Reveal className="mt-14 md:mt-20">
-          <ul
-            className="grid grid-cols-2 gap-px overflow-hidden border border-white/12 bg-white/12 lg:grid-cols-4"
-            style={{ borderRadius: "var(--radius-card)" }}
-          >
-            {numbers.highlights.map((item, index) => (
-              <li
-                key={`${item.label}-${item.hint}`}
-                className={`flex flex-col px-4 py-7 sm:px-7 sm:py-9 ${
-                  index === lastHighlight ? "bg-blush-deep" : "bg-ink"
-                }`}
-              >
+        <Stagger
+          as="ul"
+          className="mt-14 grid grid-cols-2 gap-px overflow-hidden border border-white/12 bg-white/12 md:mt-20 lg:grid-cols-4"
+          style={{ borderRadius: "var(--radius-card)" }}
+          stagger={0.09}
+        >
+          {numbers.highlights.map((item, index) => (
+            <li
+              key={`${item.label}-${item.hint}`}
+              className={`px-4 py-7 sm:px-7 sm:py-9 ${
+                index === lastHighlight ? "bg-blush-deep" : "bg-ink"
+              }`}
+            >
+              <StaggerItem>
                 <p className="font-serif text-[clamp(1.55rem,7vw,2.1rem)] leading-none tracking-[-0.03em] whitespace-nowrap sm:text-[3.2rem]">
-                  {item.value}
+                  <CountUp value={item.value} />
                 </p>
                 <p className="mt-6 text-[10px] font-medium tracking-[0.2em] text-ivory uppercase sm:text-[11px]">
                   {item.label}
                 </p>
                 <p className="mt-1 text-[13px] text-white/55">{item.hint}</p>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+              </StaggerItem>
+            </li>
+          ))}
+        </Stagger>
 
         <div className="mt-4 grid gap-4 lg:grid-cols-2">
           {numbers.platforms.map((platform, index) => {
@@ -63,12 +70,12 @@ export function Numbers() {
             return (
               <Reveal key={platform.id} delay={index * 0.06}>
                 <article
-                  className="flex h-full flex-col bg-white/[0.035] p-6 ring-1 ring-white/10 ring-inset sm:p-8"
+                  className="group flex h-full flex-col bg-white/[0.035] p-6 ring-1 ring-white/10 transition-[background-color,box-shadow] duration-500 ring-inset hover:bg-white/[0.06] hover:ring-white/20 sm:p-8"
                   style={{ borderRadius: "var(--radius-card)" }}
                 >
                   <header className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
                     <div className="flex items-center gap-3.5">
-                      <span className="flex size-11 items-center justify-center rounded-full bg-ivory text-ink">
+                      <span className="flex size-11 items-center justify-center rounded-full bg-ivory text-ink transition-transform duration-500 group-hover:-rotate-6">
                         <Icon className="size-[18px]" />
                       </span>
                       <div>
@@ -100,7 +107,7 @@ export function Numbers() {
                           {stat.label}
                         </dt>
                         <dd className="font-serif text-[1.9rem] leading-none tracking-tight whitespace-nowrap sm:text-[2.2rem]">
-                          {stat.value}
+                          <CountUp value={stat.value} />
                         </dd>
                       </div>
                     ))}

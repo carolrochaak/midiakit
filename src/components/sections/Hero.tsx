@@ -12,14 +12,14 @@ export function Hero() {
           alt={hero.imageAlt}
           fetchPriority="high"
           decoding="async"
-          className="settle absolute inset-0 h-full w-full object-cover object-[center_28%] lg:hidden"
+          className="hero-photo settle absolute inset-0 h-full w-full object-cover object-[center_28%] lg:hidden"
         />
         <img
           src={hero.image}
           alt={hero.imageAlt}
           fetchPriority="high"
           decoding="async"
-          className="settle absolute inset-0 hidden h-full w-full object-cover object-[58%_28%] lg:block"
+          className="hero-photo settle absolute inset-0 hidden h-full w-full object-cover object-[58%_28%] lg:block"
         />
         <div
           aria-hidden="true"
@@ -33,22 +33,24 @@ export function Hero() {
 
       <div className="relative z-10 px-5 pt-2 pb-12 md:px-10 md:pb-16 lg:flex lg:min-h-svh lg:items-center lg:pt-28 lg:pb-20">
         <div className="mx-auto w-full max-w-6xl">
-          <div className="max-w-xl text-ink">
+          <div className="hero-copy max-w-xl text-ink">
             <p className="rise-in flex items-center gap-3 text-[11px] font-medium tracking-[0.28em] text-stone uppercase">
-              <span aria-hidden="true" className="h-px w-8 bg-current" />
+              <span aria-hidden="true" className="draw-in h-px w-8 bg-current" />
               Mídia kit
             </p>
 
-            <h1 className="rise-in mt-6 font-serif leading-[0.8] tracking-[-0.045em] [animation-delay:90ms]">
-              <span className="block text-[clamp(3.6rem,13vw,7rem)] font-medium">
-                {hero.name}
+            <h1 className="mt-6 font-serif text-[clamp(3.6rem,13vw,7rem)] leading-[0.8] tracking-[-0.045em]">
+              <span className="mask-line">
+                <span className="font-medium [animation-delay:120ms]">{hero.name}</span>
               </span>
-              <span className="block pl-[0.55em] text-[clamp(3.6rem,13vw,7rem)] font-normal italic">
-                {hero.surname}
+              <span className="mask-line">
+                <span className="pl-[0.55em] font-normal italic [animation-delay:240ms]">
+                  {hero.surname}
+                </span>
               </span>
             </h1>
 
-            <div className="rise-in [animation-delay:180ms]">
+            <div className="rise-in [animation-delay:420ms]">
               <p className="mt-8 max-w-md text-[15px] leading-relaxed text-muted md:text-[17px]">
                 {hero.lead}
               </p>
@@ -87,6 +89,17 @@ export function Hero() {
               </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-10 z-10 hidden px-10 lg:block"
+      >
+        <div className="mx-auto flex max-w-6xl items-center gap-4">
+          <span className="relative h-12 w-px overflow-hidden bg-ink/15">
+            <span className="scroll-cue absolute inset-x-0 top-0 h-1/3 bg-ink" />
+          </span>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
-import Image from "next/image";
 import { mediaKit } from "@/data/media-kit";
+import { AudienceFigure } from "@/components/sections/AudienceFigure";
+import { CountUp, Stagger, StaggerItem } from "@/components/ui/Motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { Container, SectionHeading } from "@/components/ui/Section";
 
@@ -19,7 +20,7 @@ export function Audience() {
             <div className="mt-12 grid gap-8 border-t border-ink/15 pt-8 sm:grid-cols-[auto_1fr] sm:items-center sm:gap-10">
               <p>
                 <span className="block font-serif text-[5.5rem] leading-[0.78] tracking-[-0.05em] text-ink md:text-[7rem]">
-                  {audience.stat}
+                  <CountUp value={audience.stat} />
                 </span>
                 <span className="mt-4 block text-[11px] tracking-[0.22em] text-stone uppercase">
                   {audience.statLabel}
@@ -30,40 +31,22 @@ export function Audience() {
               </blockquote>
             </div>
 
-            <ul className="mt-10 flex flex-wrap gap-2">
+            <Stagger as="ul" className="mt-10 flex flex-wrap gap-2" stagger={0.05}>
               {audience.pillars.map((pillar) => (
-                <li
+                <StaggerItem
+                  as="li"
                   key={pillar}
-                  className="rounded-full bg-white/75 px-4 py-2 text-[12px] tracking-[0.06em] text-ink ring-1 ring-ink/8"
+                  className="rounded-full bg-white/75 px-4 py-2 text-[12px] tracking-[0.06em] text-ink ring-1 ring-ink/8 transition-colors duration-300 hover:bg-white hover:ring-ink/20"
                 >
                   {pillar}
-                </li>
+                </StaggerItem>
               ))}
-            </ul>
+            </Stagger>
           </Reveal>
 
-          <Reveal className="lg:col-span-6" delay={0.08}>
-            <div className="relative mx-auto max-w-[34rem]">
-              <div
-                aria-hidden="true"
-                className="absolute inset-x-[7%] top-[13%] bottom-0 rounded-t-full bg-sand"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-x-[7%] top-[13%] bottom-0 translate-x-3 -translate-y-3 rounded-t-full border border-b-0 border-blush-deep/25"
-              />
-              <div className="relative aspect-[3/4]">
-                <Image
-                  src={audience.image}
-                  alt={audience.imageAlt}
-                  fill
-                  quality={100}
-                  sizes="(max-width: 1024px) 90vw, 34rem"
-                  className="object-contain object-bottom"
-                />
-              </div>
-            </div>
-          </Reveal>
+          <div className="lg:col-span-6">
+            <AudienceFigure src={audience.image} alt={audience.imageAlt} />
+          </div>
         </div>
       </Container>
     </section>

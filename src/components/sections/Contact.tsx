@@ -2,6 +2,7 @@ import Image from "next/image";
 import { mediaKit } from "@/data/media-kit";
 import { Button } from "@/components/ui/Button";
 import { InstagramIcon, TikTokIcon } from "@/components/ui/Icons";
+import { Stagger, StaggerItem } from "@/components/ui/Motion";
 import { Container } from "@/components/ui/Section";
 
 const frames = [
@@ -114,11 +115,15 @@ export function Contact() {
           </div>
 
           <div className="order-1 lg:order-2 lg:col-span-5">
-            <div className="relative mx-auto h-[26rem] max-w-md sm:h-[32rem]">
+            <Stagger
+              className="relative mx-auto h-[26rem] max-w-md sm:h-[32rem]"
+              stagger={0.14}
+            >
               {contactSection.polaroids.map((photo, index) => (
-                <figure
+                <StaggerItem
+                  as="figure"
                   key={photo.src}
-                  className={`absolute bg-white p-2 shadow-[0_18px_50px_rgba(0,0,0,0.35)] ${frames[index]}`}
+                  className={`absolute bg-white p-2 shadow-[0_18px_50px_rgba(0,0,0,0.35)] transition-[rotate,translate,box-shadow] duration-500 ease-out hover:z-40 hover:-translate-y-2 hover:rotate-0 hover:shadow-[0_28px_60px_rgba(0,0,0,0.45)] ${frames[index]}`}
                 >
                   <div className="relative aspect-[3/4] bg-sand">
                     <Image
@@ -131,9 +136,9 @@ export function Contact() {
                       }`}
                     />
                   </div>
-                </figure>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
         </div>
       </Container>

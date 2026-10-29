@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { DrawLine, LineMask } from "@/components/ui/Motion";
 
 type ContainerProps = {
   children: ReactNode;
@@ -36,7 +37,7 @@ export function SectionHeading({
       <h2
         className={`font-serif text-[2.65rem] leading-[0.92] tracking-[-0.035em] md:text-[4.15rem] ${heading}`}
       >
-        {title}
+        <LineMask>{title}</LineMask>
       </h2>
       {text ? (
         <p className={`mt-5 max-w-xl text-[1.05rem] leading-relaxed md:text-lg ${body}`}>
@@ -60,7 +61,7 @@ export function SplitHeading({
       <h2
         className={`font-serif text-[2.65rem] leading-[0.92] tracking-[-0.035em] md:text-[4.4rem] lg:col-span-7 ${heading}`}
       >
-        {title}
+        <LineMask>{title}</LineMask>
       </h2>
       <div className="lg:col-span-5 lg:pb-2">
         {text ? (
@@ -91,7 +92,7 @@ export function BlockTitle({
       <h3 className="font-serif text-[1.85rem] leading-none tracking-tight md:text-[2.2rem]">
         {children}
       </h3>
-      <span aria-hidden="true" className={`h-px min-w-6 flex-1 ${rule}`} />
+      <DrawLine className={`block h-px min-w-6 flex-1 ${rule}`} />
     </div>
   );
 }

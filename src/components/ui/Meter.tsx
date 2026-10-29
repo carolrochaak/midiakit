@@ -22,10 +22,14 @@ export function Meter({ label, display, value }: MeterProps) {
       <div className="h-[2px] w-full bg-white/15">
         <motion.div
           className="h-[2px] w-full origin-left bg-blush"
-          initial={reduceMotion ? { scaleX: value / 100 } : { scaleX: 0 }}
+          initial={{ scaleX: 0 }}
           whileInView={{ scaleX: value / 100 }}
           viewport={{ once: true, amount: 0.8 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={
+            reduceMotion
+              ? { duration: 0 }
+              : { duration: 0.9, ease: [0.22, 1, 0.36, 1] }
+          }
         />
       </div>
     </div>
