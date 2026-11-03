@@ -162,11 +162,30 @@ export function Header() {
         aria-labelledby={titleId}
         className="site-dialog bg-glow-soft lg:hidden"
       >
-        <div className="flex h-full flex-col px-5 pt-28 pb-10">
-          <p id={titleId} className="sr-only">
-            Menu de seções
-          </p>
-          <nav className="flex flex-col" aria-label="Seções">
+        <div className="flex h-full min-h-0 flex-col overflow-y-auto px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(6.5rem,calc(env(safe-area-inset-bottom)+5.5rem))]">
+          <div className="flex items-center justify-between gap-4">
+            <p id={titleId} className="flex items-center gap-3">
+              <Monogram className="size-10 text-[1.1rem]" />
+              <span className="leading-tight">
+                <span className="block text-[12px] font-bold tracking-[0.24em] uppercase">
+                  Carol Rocha
+                </span>
+                <span className="block text-[10px] font-semibold tracking-[0.26em] text-gold uppercase">
+                  Mídia kit
+                </span>
+              </span>
+            </p>
+            <button
+              type="button"
+              onClick={closeMenu}
+              aria-label="Fechar menu"
+              className="relative flex size-11 items-center justify-center rounded-full border border-gold/45"
+            >
+              <span aria-hidden="true" className="absolute h-px w-5 rotate-45 bg-current" />
+              <span aria-hidden="true" className="absolute h-px w-5 -rotate-45 bg-current" />
+            </button>
+          </div>
+          <nav className="mt-10 flex flex-col" aria-label="Seções">
             {links.map((item, index) => (
               <a
                 key={item.id}
@@ -186,7 +205,8 @@ export function Header() {
             href={mediaKit.contact.whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-foil mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-full text-[11px] font-bold tracking-[0.2em] text-wine uppercase"
+            onClick={closeMenu}
+            className="bg-foil mt-auto mb-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full text-[11px] font-bold tracking-[0.2em] text-wine uppercase"
           >
             <WhatsAppIcon className="size-4" />
             Chamar no WhatsApp
