@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 type IconProps = {
   className?: string;
 };
@@ -26,6 +28,60 @@ export function TikTokIcon({ className = "size-4" }: IconProps) {
     </svg>
   );
 }
+
+function LineIcon({ className = "size-5", children }: IconProps & { children: ReactNode }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {children}
+    </svg>
+  );
+}
+
+export const pillarIcons = [
+  (props: IconProps) => (
+    <LineIcon {...props}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4" />
+    </LineIcon>
+  ),
+  (props: IconProps) => (
+    <LineIcon {...props}>
+      <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />
+    </LineIcon>
+  ),
+  (props: IconProps) => (
+    <LineIcon {...props}>
+      <path d="M12 7a2 2 0 1 1 2-2M12 7v2L3.5 15.5a1 1 0 0 0 .6 1.8h15.8a1 1 0 0 0 .6-1.8L12 9" />
+    </LineIcon>
+  ),
+  (props: IconProps) => (
+    <LineIcon {...props}>
+      <path d="M12 3c.6 4.2 2.8 6.4 7 7-4.2.6-6.4 2.8-7 7-.6-4.2-2.8-6.4-7-7 4.2-.6 6.4-2.8 7-7Z" />
+      <path d="M19 16.5c.2 1.3.9 2 2 2.2-1.1.2-1.8.9-2 2.2-.2-1.3-.9-2-2-2.2 1.1-.2 1.8-.9 2-2.2Z" />
+    </LineIcon>
+  ),
+  (props: IconProps) => (
+    <LineIcon {...props}>
+      <rect x="3" y="6.5" width="13" height="11" rx="2" />
+      <path d="m16 10.5 5-3v9l-5-3" />
+    </LineIcon>
+  ),
+  (props: IconProps) => (
+    <LineIcon {...props}>
+      <path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8L5 8Z" />
+      <path d="M9 10V6.5a3 3 0 0 1 6 0V10" />
+    </LineIcon>
+  ),
+];
 
 export function WhatsAppIcon({ className = "size-4" }: IconProps) {
   return (

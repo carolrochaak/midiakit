@@ -1,77 +1,121 @@
 @import "tailwindcss";
 
 :root {
-  --ivory: #f7ecee;
-  --paper: #fbf4f6;
-  --white: #ffffff;
-  --blush: #c68a94;
-  --blush-soft: #f3e0e3;
-  --blush-deep: #8a3a4e;
-  --sand: #e8c9ce;
-  --ink: #6b2136;
-  --charcoal: #8a3a4e;
-  --stone: #8a3a4e;
-  --muted: #7a3548;
-  --header-h: 4rem;
-  --radius-card: 1.35rem;
-  --radius-media: 1.75rem;
+  --wine: #3a0f22;
+  --wine-deep: #2c0b19;
+  --onyx: #45122a;
+  --marsala: #7a1e43;
+  --marsala-deep: #5a1532;
+  --ink: #141113;
+  --ink-soft: #4a3f44;
+  --ivory: #faf8f5;
+  --beige: #f1e6dc;
+  --gold: #c7a46b;
+  --gold-hi: #ebd7a8;
+  --gold-lo: #9c7a43;
+  --rose: #e3c9a6;
+  --foil: linear-gradient(
+    105deg,
+    #a88550 0%,
+    #cdae78 25%,
+    #e6d1a6 42%,
+    #c7a46b 58%,
+    #dcc296 76%,
+    #b08d58 100%
+  );
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --header-h: 4.5rem;
 }
 
 @theme inline {
-  --color-ivory: var(--ivory);
-  --color-paper: var(--paper);
-  --color-white: var(--white);
-  --color-blush: var(--blush);
-  --color-blush-soft: var(--blush-soft);
-  --color-blush-deep: var(--blush-deep);
-  --color-sand: var(--sand);
+  --color-wine: var(--wine);
+  --color-wine-deep: var(--wine-deep);
+  --color-onyx: var(--onyx);
+  --color-marsala: var(--marsala);
+  --color-marsala-deep: var(--marsala-deep);
   --color-ink: var(--ink);
-  --color-charcoal: var(--charcoal);
-  --color-stone: var(--stone);
-  --color-muted: var(--muted);
-  --font-sans: var(--font-outfit), sans-serif;
-  --font-serif: var(--font-cormorant), Georgia, serif;
+  --color-ink-soft: var(--ink-soft);
+  --color-ivory: var(--ivory);
+  --color-beige: var(--beige);
+  --color-gold: var(--gold);
+  --color-gold-hi: var(--gold-hi);
+  --color-gold-lo: var(--gold-lo);
+  --color-rose: var(--rose);
+  --font-sans: var(--font-manrope), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-cormorant), Garamond, "Times New Roman", serif;
 }
 
 @media (min-width: 768px) {
   :root {
-    --header-h: 5rem;
+    --header-h: 5.25rem;
   }
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-h) + 0.75rem);
-  color-scheme: light;
-  scrollbar-color: #c68a94 #f7ecee;
-  interpolate-size: allow-keywords;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 0.75rem);
+    color-scheme: light;
+    scrollbar-color: #7a1e43 #faf8f5;
+  }
 
-body {
-  background: var(--ivory);
-  color: var(--ink);
-  font-family: var(--font-outfit), sans-serif;
-  overflow-x: clip;
-  text-wrap: pretty;
-}
+  body {
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: var(--font-manrope), "Helvetica Neue", Arial, sans-serif;
+    overflow-x: clip;
+    text-wrap: pretty;
+    font-variant-numeric: lining-nums;
+  }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-cormorant), Georgia, serif;
-  text-wrap: balance;
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-cormorant), Garamond, serif;
+    font-weight: 400;
+    text-wrap: balance;
+  }
 }
 
 ::selection {
-  background: #e8c9ce;
-  color: #6b2136;
+  background: #ebd7a8;
+  color: #3a0f22;
 }
 
 :focus-visible {
-  outline: 2px solid #f7ecee;
+  outline: 2px solid #c7a46b;
   outline-offset: 3px;
-  box-shadow: 0 0 0 5px #6b2136;
+}
+
+.bg-glow {
+  background:
+    radial-gradient(70% 60% at 72% 38%, #7a1e43 0%, #5a1532 42%, #3a0f22 100%);
+}
+
+.bg-glow-soft {
+  background:
+    radial-gradient(60% 55% at 85% 0%, rgba(122, 30, 67, 0.75) 0%, transparent 70%),
+    radial-gradient(50% 50% at 0% 100%, rgba(90, 21, 50, 0.6) 0%, transparent 70%),
+    #3a0f22;
+}
+
+.bg-foil {
+  background-image: var(--foil);
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  transition: background-position 0.7s var(--ease);
+}
+
+.bg-foil:hover {
+  background-position: 100% 50%;
+}
+
+.text-foil {
+  background-image: var(--foil);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .scroll-progress {
@@ -82,7 +126,7 @@ h4 {
   height: 2px;
   width: 100%;
   transform-origin: 0 50%;
-  background: var(--blush-deep);
+  background-image: var(--foil);
   pointer-events: none;
 }
 
@@ -105,20 +149,11 @@ h4 {
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
     transform: none;
-  }
-}
-
-@keyframes settle {
-  from {
-    scale: 1.06;
-  }
-  to {
-    scale: 1;
   }
 }
 
@@ -140,101 +175,77 @@ h4 {
   }
 }
 
-@keyframes scroll-zoom {
-  to {
-    transform: scale(1.07);
-  }
-}
-
-@keyframes scroll-lift {
-  to {
-    opacity: 0.35;
-    transform: translateY(-48px);
-  }
-}
-
-@keyframes scroll-cue {
+@keyframes arch-in {
   from {
-    transform: translateY(-100%);
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
   }
   to {
-    transform: translateY(300%);
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
   }
 }
 
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes drift {
+@keyframes settle {
   from {
-    transform: translate3d(0, 0, 0);
+    scale: 1.08;
   }
   to {
-    transform: translate3d(-12%, 10%, 0);
+    scale: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.8;
   }
 }
 
 .rise-in {
-  animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.settle {
-  animation: settle 2.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: rise-in 0.9s var(--ease) both;
 }
 
 .mask-line {
   display: block;
   overflow: hidden;
-  margin: -0.14em -0.08em;
-  padding: 0.14em 0.08em;
+  margin: -0.12em -0.08em;
+  padding: 0.12em 0.08em;
 }
 
 .mask-line > span {
   display: block;
-  animation: mask-up 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: mask-up 1.1s var(--ease) both;
 }
 
 .draw-in {
   transform-origin: 0 50%;
-  animation: draw-in 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  animation: draw-in 1s var(--ease) 0.2s both;
 }
 
-@supports (animation-timeline: scroll()) {
-  .hero-photo {
-    animation:
-      settle 2.2s cubic-bezier(0.22, 1, 0.36, 1) both,
-      scroll-zoom linear both;
-    animation-timeline: auto, scroll(root);
-    animation-range: normal, 0 100vh;
-  }
-
-  @media (min-width: 1024px) {
-    .hero-copy {
-      animation: scroll-lift linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0 80vh;
-    }
-  }
+.arch-in {
+  animation: arch-in 1.4s var(--ease) 0.25s both;
 }
 
-.scroll-cue {
-  animation: scroll-cue 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+.settle {
+  animation: settle 2.4s var(--ease) both;
 }
 
-.marquee-track {
-  animation: marquee 48s linear infinite;
+.spin-slow {
+  animation: spin 28s linear infinite;
 }
 
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
-}
-
-.drift {
-  animation: drift 18s ease-in-out infinite alternate;
-  will-change: transform;
+.twinkle {
+  animation: twinkle 4s ease-in-out infinite;
 }
 
 .site-dialog {
@@ -247,13 +258,14 @@ h4 {
   max-height: none;
   border: 0;
   padding: 0;
-  background: var(--ivory);
-  color: var(--ink);
+  color: var(--ivory);
+  opacity: 1;
+  transition: opacity 220ms ease;
 }
 
 .site-dialog::backdrop {
-  background: color-mix(in srgb, var(--ivory) 88%, transparent);
-  backdrop-filter: blur(10px);
+  background: rgba(20, 17, 19, 0.6);
+  backdrop-filter: blur(8px);
 }
 
 .site-dialog[open] {
@@ -264,18 +276,6 @@ h4 {
 @starting-style {
   .site-dialog[open] {
     opacity: 0;
-  }
-}
-
-.site-dialog {
-  opacity: 1;
-  transition: opacity 220ms ease;
-}
-
-@utility no-scrollbar {
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
   }
 }
 
@@ -293,15 +293,12 @@ h4 {
     scroll-behavior: auto !important;
   }
 
-  .scroll-progress,
-  .scroll-cue {
+  .scroll-progress {
     display: none;
   }
 
-  .hero-photo,
-  .hero-copy,
-  .marquee-track,
-  .drift {
+  .spin-slow,
+  .twinkle {
     animation: none !important;
   }
 }

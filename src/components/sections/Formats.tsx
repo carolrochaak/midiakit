@@ -1,18 +1,23 @@
 import type { ReactNode } from "react";
 import { mediaKit } from "@/data/media-kit";
 import { InstagramIcon, TikTokIcon } from "@/components/ui/Icons";
-import { CountUp, Stagger, StaggerItem } from "@/components/ui/Motion";
+import { CountUp, LineMask, Stagger, StaggerItem } from "@/components/ui/Motion";
 import { Reveal } from "@/components/ui/Reveal";
-import { BlockTitle, Container, SplitHeading } from "@/components/ui/Section";
-import { SpecPills } from "@/components/ui/SpecList";
+import {
+  Accent,
+  Container,
+  Eyebrow,
+  SectionHead,
+  watermark,
+} from "@/components/ui/Section";
 
-const frame = "rounded-[4px] border border-ink/35 bg-white";
+const frame = "rounded-[3px] border border-marsala/45 bg-ivory";
 const fill =
-  "transition-colors duration-300 ease-out group-hover:border-blush-deep/60 group-hover:bg-blush-soft";
+  "transition-colors duration-300 ease-out group-hover:border-marsala group-hover:bg-rose/70";
 
 const glyphs: Record<string, ReactNode> = {
   stories: (
-    <div className="flex h-14 gap-1">
+    <div className="flex h-12 gap-1">
       {[0, 1, 2].map((key) => (
         <span
           key={key}
@@ -23,24 +28,22 @@ const glyphs: Record<string, ReactNode> = {
     </div>
   ),
   feed: (
-    <div className="relative h-14 w-[3.4rem]">
+    <div className="relative h-12 w-[3rem]">
       <span
-        className={`absolute top-0 right-0 aspect-[4/5] h-[46px] ${frame} bg-blush-soft transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:-translate-y-0.5 group-hover:rotate-3`}
+        className={`absolute top-0 right-0 aspect-[4/5] h-10 ${frame} bg-rose/60 transition-transform duration-500 group-hover:translate-x-1 group-hover:rotate-3`}
       />
       <span
-        className={`absolute bottom-0 left-0 aspect-[4/5] h-[46px] ${frame} transition-transform duration-500 ease-out group-hover:-translate-x-0.5 group-hover:-rotate-3`}
+        className={`absolute bottom-0 left-0 aspect-[4/5] h-10 ${frame} transition-transform duration-500 group-hover:-translate-x-0.5 group-hover:-rotate-3`}
       />
     </div>
   ),
   reels: (
-    <div
-      className={`relative flex aspect-[9/16] h-14 items-center justify-center ${frame} ${fill}`}
-    >
-      <span className="ml-0.5 size-0 border-y-[5px] border-l-[8px] border-y-transparent border-l-ink/70 transition-transform duration-500 ease-out group-hover:scale-125" />
+    <div className={`relative flex aspect-[9/16] h-12 items-center justify-center ${frame} ${fill}`}>
+      <span className="ml-0.5 size-0 border-y-[5px] border-l-[8px] border-y-transparent border-l-marsala transition-transform duration-500 group-hover:scale-125" />
     </div>
   ),
   house: (
-    <div className="grid h-14 grid-cols-4 grid-rows-2 gap-1">
+    <div className="grid h-12 grid-cols-4 grid-rows-2 gap-1">
       {Array.from({ length: 8 }, (_, key) => (
         <span
           key={key}
@@ -52,13 +55,27 @@ const glyphs: Record<string, ReactNode> = {
   ),
 };
 
-function IconBadge({ children, tone = "light" }: { children: ReactNode; tone?: "light" | "dark" }) {
-  const colors = tone === "dark" ? "bg-ivory text-ink" : "bg-ink text-ivory";
+function GroupTitle({
+  icon,
+  children,
+  tone = "light",
+}: {
+  icon?: ReactNode;
+  children: ReactNode;
+  tone?: "light" | "dark";
+}) {
+  const ring = tone === "dark" ? "border-gold/50 text-gold" : "border-gold/60 text-marsala";
 
   return (
-    <span className={`flex size-10 shrink-0 items-center justify-center rounded-full ${colors}`}>
-      {children}
-    </span>
+    <div className="flex items-center gap-4">
+      {icon ? (
+        <span className={`flex size-11 shrink-0 items-center justify-center rounded-full border ${ring}`}>
+          {icon}
+        </span>
+      ) : null}
+      <h3 className="font-serif text-[2rem] leading-none md:text-[2.4rem]">{children}</h3>
+      <span aria-hidden="true" className="h-px min-w-6 flex-1 bg-gold/35" />
+    </div>
   );
 }
 
@@ -73,185 +90,195 @@ export function Formats() {
   const packOptions = packs && "options" in packs ? packs.options : undefined;
 
   return (
-    <section id="formatos" className="scroll-mt-24 bg-ivory py-24 md:py-32">
-      <Container>
-        <Reveal>
-          <SplitHeading title={formats.title} text={formats.text} />
-        </Reveal>
-
-        {instagram ? (
-          <Reveal className="mt-16 md:mt-24">
-            <BlockTitle
-              icon={
-                <IconBadge>
-                  <InstagramIcon className="size-[18px]" />
-                </IconBadge>
-              }
-            >
-              {instagram.title}
-            </BlockTitle>
-            <Stagger
-              as="ul"
-              className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-4"
-              stagger={0.09}
-            >
-              {instagram.items.map((item) => (
-                <StaggerItem
-                  as="li"
-                  key={item.id}
-                  className="group grid grid-cols-[6.5rem_1fr] gap-x-5 border-t border-ink/15 pt-6 sm:block sm:border-0 sm:pt-0"
-                >
-                  <div aria-hidden="true" className="flex h-14 items-start sm:items-end">
-                    {glyphs[item.id]}
-                  </div>
-                  <div className="relative sm:mt-7 sm:pt-5">
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-x-0 top-0 hidden h-px bg-ink/15 sm:block"
-                    />
-                    <span
-                      aria-hidden="true"
-                      className="absolute top-0 left-0 hidden h-px w-full origin-left scale-x-0 bg-blush-deep transition-transform duration-700 ease-out group-hover:scale-x-100 sm:block"
-                    />
-                    <h4 className="font-serif text-[1.7rem] leading-none tracking-tight text-ink">
-                      {item.title}
-                    </h4>
-                    <p className="mt-3 text-[15px] leading-relaxed text-muted">
-                      {item.text}
-                    </p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </Stagger>
+    <section id="formatos" className="scroll-mt-20">
+      <div className="bg-ivory py-24 md:py-32">
+        <Container>
+          <Reveal>
+            <SectionHead eyebrow="Formatos" title={formats.title} text={formats.text} />
           </Reveal>
-        ) : null}
 
-        {tiktok && shop && packs && shopHighlight && packOptions ? (
-          <Reveal className="mt-20 md:mt-24">
-            <div
-              className="relative isolate overflow-hidden bg-ink px-6 py-9 text-ivory md:px-10 md:py-12"
-              style={{ borderRadius: "var(--radius-media)" }}
-            >
-              <div
-                aria-hidden="true"
-                className="drift pointer-events-none absolute -bottom-56 -left-32 -z-10 size-[34rem] rounded-full bg-blush-deep/40 blur-[120px]"
-              />
-              <BlockTitle
-                tone="dark"
-                icon={
-                  <IconBadge tone="dark">
-                    <TikTokIcon className="size-[18px]" />
-                  </IconBadge>
-                }
+          {instagram ? (
+            <div className="mt-16 md:mt-24">
+              <Reveal>
+                <GroupTitle icon={<InstagramIcon className="size-[18px]" />}>
+                  {instagram.title}
+                </GroupTitle>
+              </Reveal>
+              <Stagger
+                as="ul"
+                className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+                stagger={0.09}
               >
-                {tiktok.title}
-              </BlockTitle>
-
-              <div className="mt-10 grid gap-12 lg:grid-cols-12 lg:gap-12">
-                <div className="lg:col-span-5">
-                  <h4 className="font-sans text-[11px] font-medium tracking-[0.2em] text-sand uppercase">
-                    {shop.title}
-                  </h4>
-                  <p className="mt-5 font-serif text-[4.6rem] leading-[0.85] tracking-[-0.05em] md:text-[6.4rem]">
-                    {shopHighlight.value}
-                  </p>
-                  <p className="mt-4 font-serif text-2xl leading-tight md:text-[1.75rem]">
-                    {shopHighlight.label}
-                  </p>
-                  <p className="mt-6 max-w-md text-[15px] leading-relaxed text-white/65">
-                    {shop.text}
-                  </p>
-                </div>
-
-                <div className="lg:col-span-7 lg:border-l lg:border-white/12 lg:pl-12">
-                  <h4 className="font-sans text-[11px] font-medium tracking-[0.2em] text-sand uppercase">
-                    {packs.title}
-                  </h4>
-                  <p className="mt-5 max-w-md text-[15px] leading-relaxed text-white/65">
-                    {packs.text}
-                  </p>
-                  <Stagger
-                    as="ul"
-                    className="mt-8 grid grid-cols-3 gap-px overflow-hidden border border-white/15 bg-white/15"
-                    style={{ borderRadius: "var(--radius-card)" }}
-                    stagger={0.1}
-                  >
-                    {packOptions.map((option) => (
-                      <li
-                        key={option.value}
-                        className="bg-ink px-3 py-7 text-center transition-colors duration-500 hover:bg-[#5c1c2f] md:py-9"
-                      >
-                        <StaggerItem className="flex flex-col items-center">
-                          <span className="font-serif text-[3rem] leading-none tracking-[-0.03em] md:text-[3.8rem]">
-                            <CountUp value={option.value} />
-                          </span>
-                          <span className="mt-3 text-[10px] tracking-[0.2em] text-white/55 uppercase">
-                            {option.label}
-                          </span>
-                        </StaggerItem>
-                      </li>
-                    ))}
-                  </Stagger>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        ) : null}
-
-        {ongoing ? (
-          <Reveal className="mt-4">
-            <div
-              className="bg-blush-soft px-6 py-9 md:px-10 md:py-12"
-              style={{ borderRadius: "var(--radius-media)" }}
-            >
-              <BlockTitle>{ongoing.title}</BlockTitle>
-              <Stagger as="ul" className="mt-10 grid gap-10 lg:grid-cols-3 lg:gap-0" stagger={0.1}>
-                {ongoing.items.map((item) => (
+                {instagram.items.map((item, index) => (
                   <StaggerItem
                     as="li"
                     key={item.id}
-                    className="lg:border-l lg:border-ink/12 lg:px-8 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0"
+                    className="group relative flex flex-col overflow-hidden rounded-[1.4rem] border border-gold/35 bg-white p-6 transition-[border-color,box-shadow,translate] duration-500 hover:-translate-y-1 hover:border-gold hover:shadow-[0_30px_60px_-40px_rgba(58,15,34,0.5)]"
                   >
-                    <h4 className="font-serif text-[1.7rem] leading-none tracking-tight text-ink">
+                    <div className="flex items-start justify-between">
+                      <div aria-hidden="true" className="flex h-12 items-end">
+                        {glyphs[item.id]}
+                      </div>
+                      <span className="font-serif text-[13px] text-marsala italic">
+                        Nº {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <h4 className="mt-8 font-serif text-[1.75rem] leading-none text-ink">
                       {item.title}
                     </h4>
-                    <p className="mt-3 text-[15px] leading-relaxed text-muted">
-                      {item.text}
-                    </p>
-                    {"options" in item ? <SpecPills items={item.options} /> : null}
-                    {"note" in item ? (
-                      <p className="mt-5 border-t border-ink/12 pt-4 text-[13px] leading-relaxed text-stone">
-                        {item.note}
-                      </p>
-                    ) : null}
+                    <p className="mt-3 text-[14px] leading-relaxed text-ink-soft">{item.text}</p>
                   </StaggerItem>
                 ))}
               </Stagger>
             </div>
-          </Reveal>
-        ) : null}
+          ) : null}
+        </Container>
+      </div>
 
-        <Stagger
-          as="dl"
-          className="mt-16 grid gap-px overflow-hidden bg-ink/10 sm:grid-cols-2 md:mt-20 lg:grid-cols-4"
-          style={{ borderRadius: "var(--radius-card)" }}
-        >
-          {formats.conditions.map((condition) => (
-            <div key={condition.title} className="bg-paper px-5 py-6 md:px-6 md:py-7">
-              <StaggerItem
-                as="dt"
-                className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.18em] text-ink uppercase"
-              >
-                <span aria-hidden="true" className="size-1.5 rounded-full bg-blush-deep" />
-                {condition.title}
-              </StaggerItem>
-              <StaggerItem as="dd" className="mt-3 text-sm leading-relaxed text-muted">
-                {condition.text}
-              </StaggerItem>
-            </div>
-          ))}
-        </Stagger>
-      </Container>
+      {tiktok && shop && packs && shopHighlight && packOptions ? (
+        <div className="relative overflow-hidden bg-marsala py-24 text-ivory md:py-32">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_70%_at_15%_20%,rgba(235,215,168,0.12)_0%,transparent_60%),radial-gradient(50%_60%_at_100%_100%,rgba(58,15,34,0.7)_0%,transparent_70%)]"
+          />
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 1440 700"
+            preserveAspectRatio="xMidYMid slice"
+            className="pointer-events-none absolute inset-0 size-full"
+            fill="none"
+            stroke="#c7a46b"
+          >
+            <path d="M-40 420 C 300 300, 620 560, 980 380 S 1400 260, 1500 330" strokeOpacity="0.2" />
+            <path d="M-40 500 C 340 380, 660 640, 1020 460 S 1420 340, 1500 410" strokeOpacity="0.1" />
+          </svg>
+
+          <Container className="relative grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-12">
+            <Reveal className="lg:col-span-6">
+              <Eyebrow tone="dark">
+                <span className="flex items-center gap-2">
+                  <TikTokIcon className="size-3.5" />
+                  {tiktok.title}
+                </span>
+              </Eyebrow>
+              <h3 className="mt-6 font-serif text-[clamp(4.6rem,15vw,9.5rem)] leading-[0.86] font-light tracking-[-0.03em]">
+                <LineMask>{shopHighlight.value}</LineMask>
+              </h3>
+              <p className="text-foil mt-4 font-serif text-[1.9rem] leading-tight italic md:text-[2.3rem]">
+                {shopHighlight.label}
+              </p>
+              <p className="mt-6 max-w-md text-[15px] leading-[1.75] text-ivory/85">{shop.text}</p>
+            </Reveal>
+
+            <Reveal className="lg:col-span-6" delay={0.1}>
+              <div className="relative rounded-[1.6rem] border border-gold/30 bg-wine/45 p-7 backdrop-blur-sm md:p-10">
+                <span className="bg-foil absolute -top-9 right-6 flex size-[5.5rem] flex-col items-center justify-center rounded-full text-center text-wine shadow-[0_20px_40px_-20px_rgba(0,0,0,0.6)] md:-top-12 md:size-28">
+                  <span className="font-serif text-[0.95rem] leading-none italic md:text-[1.1rem]">sem</span>
+                  <span className="mt-1 font-serif text-[1.15rem] leading-none md:text-[1.4rem]">fee fixo</span>
+                </span>
+                <h4 className="pr-24 font-serif text-[2rem] leading-none md:text-[2.4rem]">{packs.title}</h4>
+                <p className="mt-4 max-w-md text-[14px] leading-relaxed text-ivory/75">{packs.text}</p>
+                <Stagger as="ul" className="mt-8 grid grid-cols-3 gap-3" stagger={0.1}>
+                  {packOptions.map((option) => (
+                    <StaggerItem
+                      as="li"
+                      key={option.value}
+                      className="rounded-2xl border border-gold/30 bg-white/[0.04] px-2 py-6 text-center transition-colors duration-500 hover:border-gold md:py-8"
+                    >
+                      <span className="text-foil block font-serif text-[2.8rem] leading-none font-light md:text-[3.6rem]">
+                        <CountUp value={option.value} />
+                      </span>
+                      <span className="mt-2 block text-[10px] font-bold tracking-[0.2em] text-ivory/70 uppercase">
+                        {option.label}
+                      </span>
+                    </StaggerItem>
+                  ))}
+                </Stagger>
+              </div>
+            </Reveal>
+          </Container>
+        </div>
+      ) : null}
+
+      <div className="bg-beige py-24 md:py-28">
+        <Container>
+          {ongoing ? (
+            <>
+              <Reveal>
+                <GroupTitle>
+                  <Accent text={ongoing.title} words={1} />
+                </GroupTitle>
+              </Reveal>
+              <Stagger as="ul" className="mt-10 grid gap-4 lg:grid-cols-3" stagger={0.1}>
+                {ongoing.items.map((item, index) => {
+                  const featured = "options" in item;
+                  return (
+                    <StaggerItem
+                      as="li"
+                      key={item.id}
+                      className={`relative flex flex-col overflow-hidden rounded-[1.4rem] p-7 md:p-8 ${
+                        featured
+                          ? "bg-marsala-deep text-ivory"
+                          : "border border-gold/35 bg-ivory text-ink"
+                      }`}
+                    >
+                      {featured ? (
+                        <span aria-hidden="true" className={`${watermark} -right-2 -bottom-8 text-[8rem]`}>
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      ) : null}
+                      <span className={`font-serif text-[13px] italic ${featured ? "text-gold" : "text-marsala"}`}>
+                        Nº {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <h4 className="mt-6 font-serif text-[1.9rem] leading-none">{item.title}</h4>
+                      <p className={`mt-3 text-[14px] leading-relaxed ${featured ? "text-ivory/80" : "text-ink-soft"}`}>
+                        {item.text}
+                      </p>
+                      {"options" in item ? (
+                        <ul className="mt-6 flex flex-wrap gap-2">
+                          {item.options.map((option) => (
+                            <li
+                              key={option.value}
+                              className="rounded-full border border-gold/45 px-3.5 py-1.5 text-[10px] font-bold tracking-[0.16em] text-gold-hi uppercase"
+                            >
+                              {option.value} {option.label}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      {"note" in item ? (
+                        <p className="relative mt-6 border-t border-gold/25 pt-4 text-[13px] leading-relaxed text-ivory/70">
+                          {item.note}
+                        </p>
+                      ) : null}
+                    </StaggerItem>
+                  );
+                })}
+              </Stagger>
+            </>
+          ) : null}
+
+          <Stagger
+            as="dl"
+            className="mt-14 grid gap-x-10 gap-y-8 border-t border-gold/40 pt-10 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {formats.conditions.map((condition) => (
+              <div key={condition.title}>
+                <StaggerItem
+                  as="dt"
+                  className="flex items-center gap-3 text-[11px] font-bold tracking-[0.2em] text-marsala uppercase"
+                >
+                  <span aria-hidden="true" className="size-1.5 rotate-45 bg-gold" />
+                  {condition.title}
+                </StaggerItem>
+                <StaggerItem as="dd" className="mt-3 text-[14px] leading-relaxed text-ink-soft">
+                  {condition.text}
+                </StaggerItem>
+              </div>
+            ))}
+          </Stagger>
+        </Container>
+      </div>
     </section>
   );
 }
