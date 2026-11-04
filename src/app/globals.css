@@ -303,6 +303,38 @@
   }
 }
 
+.reel-frame.is-expanded,
+.reel-frame:fullscreen,
+.reel-frame:-webkit-full-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border: 0;
+  border-radius: 0;
+  background: #140c10;
+}
+
+.reel-frame.is-expanded {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100dvh;
+}
+
+.reel-frame.is-expanded video,
+.reel-frame:fullscreen video,
+.reel-frame:-webkit-full-screen video {
+  position: static;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 #nl-badge-frame,
 iframe[title="Powered by Netlify"] {
   display: none !important;

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { mediaKit } from "@/data/media-kit";
+import { FormatVideos } from "@/components/sections/FormatVideos";
 import { InstagramIcon, TikTokIcon } from "@/components/ui/Icons";
 import { CountUp, LineMask, Stagger, StaggerItem } from "@/components/ui/Motion";
 import { Reveal } from "@/components/ui/Reveal";
@@ -130,6 +131,7 @@ export function Formats() {
                   </StaggerItem>
                 ))}
               </Stagger>
+              <FormatVideos items={formats.samples} />
             </div>
           ) : null}
         </Container>

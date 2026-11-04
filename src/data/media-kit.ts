@@ -335,6 +335,30 @@ export const mediaKit = {
         ],
       },
     ],
+    samples: [
+      {
+        src: "/media/1.mp4",
+        href: "https://www.instagram.com/p/Ddr73fQR9oO/",
+        caption: "Quem mais é assim?",
+        note: "Look: @pozze.com.br · CAROL15",
+      },
+      {
+        src: "/media/2.mp4",
+        href: "https://www.instagram.com/p/DeKgFNQptVW/",
+        caption: "GRWM para um evento onde o dress code era: confortável e fitness",
+      },
+      {
+        src: "/media/3.mp4",
+        href: "https://www.instagram.com/p/DaoR5x1BCbq/",
+        caption: "GRWM",
+        note: "@demarismi · Cupom Carol10",
+      },
+      {
+        src: "/media/4.mp4",
+        href: "https://www.instagram.com/p/Dc1vKVOhpx2/",
+        caption: "@principiaskincare",
+      },
+    ],
     conditions: [
       {
         title: "Produtos",
