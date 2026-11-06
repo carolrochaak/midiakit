@@ -58,9 +58,9 @@ export const mediaKit = {
     lead: "Criadora de lifestyle, moda, beleza e maternidade real. Instagram, TikTok Shop e parcerias com marcas.",
     niches: ["Lifestyle", "Moda", "Saúde", "Maternidade real"],
     image: "/media/hero-v7.webp",
-    imageMobile: "/media/hero-mobile-v4.webp",
+    imageMobile: "/media/hero-mobile-v5.webp",
     imageAlt:
-      "Caroline Rocha de casaco claro, blusa rosa e calça jeans, com uma mão no bolso",
+      "Caroline Rocha sorrindo de ombro, com blusa marrom de um ombro só e colar dourado",
     primaryLabel: "Chamar no WhatsApp",
     secondaryLabel: "Ver os números",
   },

@@ -110,7 +110,7 @@ export function Hero() {
                 alt={hero.imageAlt}
                 fetchPriority="high"
                 decoding="async"
-                className="settle absolute inset-0 size-full object-cover object-[center_22%]"
+                className="settle absolute inset-0 size-full object-cover object-[center_32%]"
               />
             </div>
 
